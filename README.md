@@ -355,6 +355,52 @@ ip route replace default via 10.94.0.1
 
 Konfigurasi lengkap seluruh node terlampir pada folder `ROUTER/`.
 
+### Pengujian
+
+1. Karl → Shibuya
+
+```
+ping -c 4 10.94.15.129
+traceroute -n 10.94.15.129
+```
+
+![1](<assets/4_1%20(2).png>)
+
+2. Masayuki → Omnipresence
+
+```
+ping -c 4 10.94.4.2
+traceroute -n 10.94.4.2
+```
+
+![2](assets/4_2.png)
+
+3. Alice → Mika
+
+```
+ping -c 4 10.94.15.131
+traceroute -n 10.94.15.131
+```
+
+![3](assets/4_3.png)
+
+4. Karl → Lin (satu switch)
+
+```
+ping -c 4 10.94.0.3
+```
+
+![4](assets/4_4.png)
+
+5. Mika → Internet
+
+```
+ping -c 4 8.8.8.8
+traceroute -n 8.8.8.8
+```
+
+![5](assets/4_5.png)
+
 # CPT - CIDR
 
 Perancangan pengalamatan IP berbasis **CIDR/VLSM** untuk topologi 13 router (Cyberia, Wired, Navi, Tachibana, Deus, Protocol7, Knights, Phantoma, Shibuya, Psyche, Copland, Schumann, Accela), lengkap dengan penggabungan (summarization) subnet dan tabel **static routing** untuk diimplementasikan di Cisco Packet Tracer.
@@ -387,34 +433,34 @@ Jumlah IP = jumlah host + interface router. Ukuran blok = pangkat 2 terkecil ≥
 
 ![Penanda rute A1-A25](assets/penanda_rute_A1-A25.png)
 
-| Nama Subnet | Rute | Jumlah Host | Interface Router | Jumlah IP | Ukuran Blok (+NID/BC) | Netmask |
-|---|---|---|---|---|---|---|
-| A1 | Cyberia > JJ, MyuMyu | 125 | 1 | 126 | 128 | /25 |
-| A2 | Cyberia > Wired | 0 | 2 | 2 | 4 | /30 |
-| A3 | Wired > Navi | 0 | 2 | 2 | 4 | /30 |
-| A4 | Wired > Tachibana | 0 | 2 | 2 | 4 | /30 |
-| A5 | Wired > Switch2 > Psyche, Copland, Schumann | 0 | 4 | 4 | 8 | /29 |
-| A6 | Psyche > Karl, Lin | 880 | 1 | 881 | 1024 | /22 |
-| A7 | Copland > Juri | 31 | 1 | 32 | 64 | /26 |
-| A8 | Copland > Masayuki | 300 | 1 | 301 | 512 | /23 |
-| A9 | Schumann > Akashic | 3 | 1 | 4 | 8 | /29 |
-| A10 | Schumann > Accela | 0 | 2 | 2 | 4 | /30 |
-| A11 | Accela > Omnipresence, Denpa | 513 | 1 | 514 | 1024 | /22 |
-| A12 | Navi > Alice, Reika | 253 | 1 | 254 | 256 | /24 |
-| A13 | Navi > Taro | 57 | 1 | 58 | 64 | /26 |
-| A14 | Navi > Yasuo, Miho, Kuma | 142 | 1 | 143 | 256 | /24 |
-| A15 | Tachibana > Collective, Ghost | 266 | 1 | 267 | 512 | /23 |
-| A16 | Tachibana > Deus | 0 | 2 | 2 | 4 | /30 |
-| A17 | Deus > Lilith, Specter | 98 | 1 | 99 | 128 | /25 |
-| A18 | Deus > Protocol7 | 0 | 2 | 2 | 4 | /30 |
-| A19 | Protocol7 > Chisa, Hodgeson | 32 | 1 | 33 | 64 | /26 |
-| A20 | Protocol7 > Knights | 0 | 2 | 2 | 4 | /30 |
-| A21 | Knights > Eiri | 2 | 1 | 3 | 8 | /29 |
-| A22 | Knights > Phantoma | 0 | 2 | 2 | 4 | /30 |
-| A23 | Phantoma > Semi | 14 | 1 | 15 | 32 | /27 |
-| A24 | Phantoma > Shibuya | 0 | 2 | 2 | 4 | /30 |
-| A25 | Shibuya > Lain, Mika | 61 | 1 | 62 | 64 | /26 |
-| Total |  |  |  | 2814 | 4188 |  |
+| Nama Subnet | Rute                                        | Jumlah Host | Interface Router | Jumlah IP | Ukuran Blok (+NID/BC) | Netmask |
+| ----------- | ------------------------------------------- | ----------- | ---------------- | --------- | --------------------- | ------- |
+| A1          | Cyberia > JJ, MyuMyu                        | 125         | 1                | 126       | 128                   | /25     |
+| A2          | Cyberia > Wired                             | 0           | 2                | 2         | 4                     | /30     |
+| A3          | Wired > Navi                                | 0           | 2                | 2         | 4                     | /30     |
+| A4          | Wired > Tachibana                           | 0           | 2                | 2         | 4                     | /30     |
+| A5          | Wired > Switch2 > Psyche, Copland, Schumann | 0           | 4                | 4         | 8                     | /29     |
+| A6          | Psyche > Karl, Lin                          | 880         | 1                | 881       | 1024                  | /22     |
+| A7          | Copland > Juri                              | 31          | 1                | 32        | 64                    | /26     |
+| A8          | Copland > Masayuki                          | 300         | 1                | 301       | 512                   | /23     |
+| A9          | Schumann > Akashic                          | 3           | 1                | 4         | 8                     | /29     |
+| A10         | Schumann > Accela                           | 0           | 2                | 2         | 4                     | /30     |
+| A11         | Accela > Omnipresence, Denpa                | 513         | 1                | 514       | 1024                  | /22     |
+| A12         | Navi > Alice, Reika                         | 253         | 1                | 254       | 256                   | /24     |
+| A13         | Navi > Taro                                 | 57          | 1                | 58        | 64                    | /26     |
+| A14         | Navi > Yasuo, Miho, Kuma                    | 142         | 1                | 143       | 256                   | /24     |
+| A15         | Tachibana > Collective, Ghost               | 266         | 1                | 267       | 512                   | /23     |
+| A16         | Tachibana > Deus                            | 0           | 2                | 2         | 4                     | /30     |
+| A17         | Deus > Lilith, Specter                      | 98          | 1                | 99        | 128                   | /25     |
+| A18         | Deus > Protocol7                            | 0           | 2                | 2         | 4                     | /30     |
+| A19         | Protocol7 > Chisa, Hodgeson                 | 32          | 1                | 33        | 64                    | /26     |
+| A20         | Protocol7 > Knights                         | 0           | 2                | 2         | 4                     | /30     |
+| A21         | Knights > Eiri                              | 2           | 1                | 3         | 8                     | /29     |
+| A22         | Knights > Phantoma                          | 0           | 2                | 2         | 4                     | /30     |
+| A23         | Phantoma > Semi                             | 14          | 1                | 15        | 32                    | /27     |
+| A24         | Phantoma > Shibuya                          | 0           | 2                | 2         | 4                     | /30     |
+| A25         | Shibuya > Lain, Mika                        | 61          | 1                | 62        | 64                    | /26     |
+| Total       |                                             |             |                  | 2814      | 4188                  |         |
 
 ## 3. Penggabungan Subnet (B1–B8 dan Root)
 
@@ -422,126 +468,126 @@ Ukuran blok gabungan = pangkat 2 terkecil ≥ jumlah ukuran blok anak. Cabang di
 
 ![Penanda penggabungan B1-B8](assets/penanda_gabungan_B1-B8.png)
 
-| Gabungan | Isi | Total Ukuran | Ukuran Blok | Netmask | Offset (dari X.Y.0.0) | NID |
-|---|---|---|---|---|---|---|
-| B1 | A25+A23+A24+A22+A21+A20 | 116 | 128 | /25 | 5120 | 10.94.20.0 |
-| B2 | B1+A19+A18 | 196 | 256 | /24 | 5120 | 10.94.20.0 |
-| B3 | B2+A17+A16+A4 | 392 | 512 | /23 | 5120 | 10.94.20.0 |
-| B4 | B3+A15 (cabang Tachibana) | 1024 | 1024 | /22 | 5120 | 10.94.20.0 |
-| B5 | A12+A14+A13+A3 (cabang Navi) | 580 | 1024 | /22 | 4096 | 10.94.16.0 |
-| B6 | A8+A7 (cabang Copland) | 576 | 1024 | /22 | 3072 | 10.94.12.0 |
-| B7 | A11+A10+A9 (cabang Schumann) | 1036 | 2048 | /21 | 0 | 10.94.0.0 |
-| B8 | A1+A2 (cabang Cyberia) | 132 | 256 | /24 | 6144 | 10.94.24.0 |
-| Root | B4+B5+B6+B7+A6+B8+A5 | 6408 | 8192 | /19 | 0 | 10.94.0.0 |
+| Gabungan | Isi                          | Total Ukuran | Ukuran Blok | Netmask | Offset (dari X.Y.0.0) | NID        |
+| -------- | ---------------------------- | ------------ | ----------- | ------- | --------------------- | ---------- |
+| B1       | A25+A23+A24+A22+A21+A20      | 116          | 128         | /25     | 5120                  | 10.94.20.0 |
+| B2       | B1+A19+A18                   | 196          | 256         | /24     | 5120                  | 10.94.20.0 |
+| B3       | B2+A17+A16+A4                | 392          | 512         | /23     | 5120                  | 10.94.20.0 |
+| B4       | B3+A15 (cabang Tachibana)    | 1024         | 1024        | /22     | 5120                  | 10.94.20.0 |
+| B5       | A12+A14+A13+A3 (cabang Navi) | 580          | 1024        | /22     | 4096                  | 10.94.16.0 |
+| B6       | A8+A7 (cabang Copland)       | 576          | 1024        | /22     | 3072                  | 10.94.12.0 |
+| B7       | A11+A10+A9 (cabang Schumann) | 1036         | 2048        | /21     | 0                     | 10.94.0.0  |
+| B8       | A1+A2 (cabang Cyberia)       | 132          | 256         | /24     | 6144                  | 10.94.24.0 |
+| Root     | B4+B5+B6+B7+A6+B8+A5         | 6408         | 8192        | /19     | 0                     | 10.94.0.0  |
 
 ## 4. Pembagian IP (VLSM)
 
 Diurutkan dari offset terkecil (blok terbesar lebih dulu).
 
-| Nama Subnet | Rute | Jumlah IP | Netmask | Netmask (dotted) | Offset | NID | IP Host Pertama | IP Host Terakhir | Broadcast |
-|---|---|---|---|---|---|---|---|---|---|
-| A11 | Accela > Omnipresence, Denpa | 514 | /22 | 255.255.252.0 | 0 | 10.94.0.0 | 10.94.0.1 | 10.94.3.254 | 10.94.3.255 |
-| A10 | Schumann > Accela | 2 | /30 | 255.255.255.252 | 1024 | 10.94.4.0 | 10.94.4.1 | 10.94.4.2 | 10.94.4.3 |
-| A9 | Schumann > Akashic | 4 | /29 | 255.255.255.248 | 1032 | 10.94.4.8 | 10.94.4.9 | 10.94.4.14 | 10.94.4.15 |
-| A6 | Psyche > Karl, Lin | 881 | /22 | 255.255.252.0 | 2048 | 10.94.8.0 | 10.94.8.1 | 10.94.11.254 | 10.94.11.255 |
-| A8 | Copland > Masayuki | 301 | /23 | 255.255.254.0 | 3072 | 10.94.12.0 | 10.94.12.1 | 10.94.13.254 | 10.94.13.255 |
-| A7 | Copland > Juri | 32 | /26 | 255.255.255.192 | 3584 | 10.94.14.0 | 10.94.14.1 | 10.94.14.62 | 10.94.14.63 |
-| A12 | Navi > Alice, Reika | 254 | /24 | 255.255.255.0 | 4096 | 10.94.16.0 | 10.94.16.1 | 10.94.16.254 | 10.94.16.255 |
-| A14 | Navi > Yasuo, Miho, Kuma | 143 | /24 | 255.255.255.0 | 4352 | 10.94.17.0 | 10.94.17.1 | 10.94.17.254 | 10.94.17.255 |
-| A13 | Navi > Taro | 58 | /26 | 255.255.255.192 | 4608 | 10.94.18.0 | 10.94.18.1 | 10.94.18.62 | 10.94.18.63 |
-| A3 | Wired > Navi | 2 | /30 | 255.255.255.252 | 4672 | 10.94.18.64 | 10.94.18.65 | 10.94.18.66 | 10.94.18.67 |
-| A25 | Shibuya > Lain, Mika | 62 | /26 | 255.255.255.192 | 5120 | 10.94.20.0 | 10.94.20.1 | 10.94.20.62 | 10.94.20.63 |
-| A23 | Phantoma > Semi | 15 | /27 | 255.255.255.224 | 5184 | 10.94.20.64 | 10.94.20.65 | 10.94.20.94 | 10.94.20.95 |
-| A24 | Phantoma > Shibuya | 2 | /30 | 255.255.255.252 | 5216 | 10.94.20.96 | 10.94.20.97 | 10.94.20.98 | 10.94.20.99 |
-| A22 | Knights > Phantoma | 2 | /30 | 255.255.255.252 | 5220 | 10.94.20.100 | 10.94.20.101 | 10.94.20.102 | 10.94.20.103 |
-| A21 | Knights > Eiri | 3 | /29 | 255.255.255.248 | 5224 | 10.94.20.104 | 10.94.20.105 | 10.94.20.110 | 10.94.20.111 |
-| A20 | Protocol7 > Knights | 2 | /30 | 255.255.255.252 | 5232 | 10.94.20.112 | 10.94.20.113 | 10.94.20.114 | 10.94.20.115 |
-| A19 | Protocol7 > Chisa, Hodgeson | 33 | /26 | 255.255.255.192 | 5248 | 10.94.20.128 | 10.94.20.129 | 10.94.20.190 | 10.94.20.191 |
-| A18 | Deus > Protocol7 | 2 | /30 | 255.255.255.252 | 5312 | 10.94.20.192 | 10.94.20.193 | 10.94.20.194 | 10.94.20.195 |
-| A17 | Deus > Lilith, Specter | 99 | /25 | 255.255.255.128 | 5376 | 10.94.21.0 | 10.94.21.1 | 10.94.21.126 | 10.94.21.127 |
-| A16 | Tachibana > Deus | 2 | /30 | 255.255.255.252 | 5504 | 10.94.21.128 | 10.94.21.129 | 10.94.21.130 | 10.94.21.131 |
-| A4 | Wired > Tachibana | 2 | /30 | 255.255.255.252 | 5508 | 10.94.21.132 | 10.94.21.133 | 10.94.21.134 | 10.94.21.135 |
-| A15 | Tachibana > Collective, Ghost | 267 | /23 | 255.255.254.0 | 5632 | 10.94.22.0 | 10.94.22.1 | 10.94.23.254 | 10.94.23.255 |
-| A1 | Cyberia > JJ, MyuMyu | 126 | /25 | 255.255.255.128 | 6144 | 10.94.24.0 | 10.94.24.1 | 10.94.24.126 | 10.94.24.127 |
-| A2 | Cyberia > Wired | 2 | /30 | 255.255.255.252 | 6272 | 10.94.24.128 | 10.94.24.129 | 10.94.24.130 | 10.94.24.131 |
-| A5 | Wired > Switch2 > Psyche, Copland, Schumann | 4 | /29 | 255.255.255.248 | 6400 | 10.94.25.0 | 10.94.25.1 | 10.94.25.6 | 10.94.25.7 |
+| Nama Subnet | Rute                                        | Jumlah IP | Netmask | Netmask (dotted) | Offset | NID          | IP Host Pertama | IP Host Terakhir | Broadcast    |
+| ----------- | ------------------------------------------- | --------- | ------- | ---------------- | ------ | ------------ | --------------- | ---------------- | ------------ |
+| A11         | Accela > Omnipresence, Denpa                | 514       | /22     | 255.255.252.0    | 0      | 10.94.0.0    | 10.94.0.1       | 10.94.3.254      | 10.94.3.255  |
+| A10         | Schumann > Accela                           | 2         | /30     | 255.255.255.252  | 1024   | 10.94.4.0    | 10.94.4.1       | 10.94.4.2        | 10.94.4.3    |
+| A9          | Schumann > Akashic                          | 4         | /29     | 255.255.255.248  | 1032   | 10.94.4.8    | 10.94.4.9       | 10.94.4.14       | 10.94.4.15   |
+| A6          | Psyche > Karl, Lin                          | 881       | /22     | 255.255.252.0    | 2048   | 10.94.8.0    | 10.94.8.1       | 10.94.11.254     | 10.94.11.255 |
+| A8          | Copland > Masayuki                          | 301       | /23     | 255.255.254.0    | 3072   | 10.94.12.0   | 10.94.12.1      | 10.94.13.254     | 10.94.13.255 |
+| A7          | Copland > Juri                              | 32        | /26     | 255.255.255.192  | 3584   | 10.94.14.0   | 10.94.14.1      | 10.94.14.62      | 10.94.14.63  |
+| A12         | Navi > Alice, Reika                         | 254       | /24     | 255.255.255.0    | 4096   | 10.94.16.0   | 10.94.16.1      | 10.94.16.254     | 10.94.16.255 |
+| A14         | Navi > Yasuo, Miho, Kuma                    | 143       | /24     | 255.255.255.0    | 4352   | 10.94.17.0   | 10.94.17.1      | 10.94.17.254     | 10.94.17.255 |
+| A13         | Navi > Taro                                 | 58        | /26     | 255.255.255.192  | 4608   | 10.94.18.0   | 10.94.18.1      | 10.94.18.62      | 10.94.18.63  |
+| A3          | Wired > Navi                                | 2         | /30     | 255.255.255.252  | 4672   | 10.94.18.64  | 10.94.18.65     | 10.94.18.66      | 10.94.18.67  |
+| A25         | Shibuya > Lain, Mika                        | 62        | /26     | 255.255.255.192  | 5120   | 10.94.20.0   | 10.94.20.1      | 10.94.20.62      | 10.94.20.63  |
+| A23         | Phantoma > Semi                             | 15        | /27     | 255.255.255.224  | 5184   | 10.94.20.64  | 10.94.20.65     | 10.94.20.94      | 10.94.20.95  |
+| A24         | Phantoma > Shibuya                          | 2         | /30     | 255.255.255.252  | 5216   | 10.94.20.96  | 10.94.20.97     | 10.94.20.98      | 10.94.20.99  |
+| A22         | Knights > Phantoma                          | 2         | /30     | 255.255.255.252  | 5220   | 10.94.20.100 | 10.94.20.101    | 10.94.20.102     | 10.94.20.103 |
+| A21         | Knights > Eiri                              | 3         | /29     | 255.255.255.248  | 5224   | 10.94.20.104 | 10.94.20.105    | 10.94.20.110     | 10.94.20.111 |
+| A20         | Protocol7 > Knights                         | 2         | /30     | 255.255.255.252  | 5232   | 10.94.20.112 | 10.94.20.113    | 10.94.20.114     | 10.94.20.115 |
+| A19         | Protocol7 > Chisa, Hodgeson                 | 33        | /26     | 255.255.255.192  | 5248   | 10.94.20.128 | 10.94.20.129    | 10.94.20.190     | 10.94.20.191 |
+| A18         | Deus > Protocol7                            | 2         | /30     | 255.255.255.252  | 5312   | 10.94.20.192 | 10.94.20.193    | 10.94.20.194     | 10.94.20.195 |
+| A17         | Deus > Lilith, Specter                      | 99        | /25     | 255.255.255.128  | 5376   | 10.94.21.0   | 10.94.21.1      | 10.94.21.126     | 10.94.21.127 |
+| A16         | Tachibana > Deus                            | 2         | /30     | 255.255.255.252  | 5504   | 10.94.21.128 | 10.94.21.129    | 10.94.21.130     | 10.94.21.131 |
+| A4          | Wired > Tachibana                           | 2         | /30     | 255.255.255.252  | 5508   | 10.94.21.132 | 10.94.21.133    | 10.94.21.134     | 10.94.21.135 |
+| A15         | Tachibana > Collective, Ghost               | 267       | /23     | 255.255.254.0    | 5632   | 10.94.22.0   | 10.94.22.1      | 10.94.23.254     | 10.94.23.255 |
+| A1          | Cyberia > JJ, MyuMyu                        | 126       | /25     | 255.255.255.128  | 6144   | 10.94.24.0   | 10.94.24.1      | 10.94.24.126     | 10.94.24.127 |
+| A2          | Cyberia > Wired                             | 2         | /30     | 255.255.255.252  | 6272   | 10.94.24.128 | 10.94.24.129    | 10.94.24.130     | 10.94.24.131 |
+| A5          | Wired > Switch2 > Psyche, Copland, Schumann | 4         | /29     | 255.255.255.248  | 6400   | 10.94.25.0   | 10.94.25.1      | 10.94.25.6       | 10.94.25.7   |
 
 ## 5. IP Interface Router
 
 Aturan: router "atas" mendapat IP pertama, router "bawah" IP kedua pada link /30. Host di LAN memakai IP statis dari range subnet dengan gateway = IP router di LAN tersebut.
 
-| Router | Terhubung ke | IP Address | Netmask | Subnet |
-|---|---|---|---|---|
-| Cyberia | LAN JJ, MyuMyu | 10.94.24.1 | 255.255.255.128 | A1 |
-| Cyberia | Wired | 10.94.24.129 | 255.255.255.252 | A2 |
-| Cyberia | Cloud | sesuai Cloud/DHCP | - | - |
-| Wired | Cyberia | 10.94.24.130 | 255.255.255.252 | A2 |
-| Wired | Navi | 10.94.18.65 | 255.255.255.252 | A3 |
-| Wired | Tachibana | 10.94.21.133 | 255.255.255.252 | A4 |
-| Wired | Switch2 | 10.94.25.1 | 255.255.255.248 | A5 |
-| Psyche | Switch2 | 10.94.25.2 | 255.255.255.248 | A5 |
-| Psyche | LAN Karl, Lin | 10.94.8.1 | 255.255.252.0 | A6 |
-| Copland | Switch2 | 10.94.25.3 | 255.255.255.248 | A5 |
-| Copland | LAN Masayuki | 10.94.12.1 | 255.255.254.0 | A8 |
-| Copland | Juri | 10.94.14.1 | 255.255.255.192 | A7 |
-| Schumann | Switch2 | 10.94.25.4 | 255.255.255.248 | A5 |
-| Schumann | Accela | 10.94.4.1 | 255.255.255.252 | A10 |
-| Schumann | Akashic | 10.94.4.9 | 255.255.255.248 | A9 |
-| Accela | Schumann | 10.94.4.2 | 255.255.255.252 | A10 |
-| Accela | LAN Omnipresence, Denpa | 10.94.0.1 | 255.255.252.0 | A11 |
-| Navi | Wired | 10.94.18.66 | 255.255.255.252 | A3 |
-| Navi | LAN Alice, Reika | 10.94.16.1 | 255.255.255.0 | A12 |
-| Navi | LAN Yasuo, Miho, Kuma | 10.94.17.1 | 255.255.255.0 | A14 |
-| Navi | LAN Taro | 10.94.18.1 | 255.255.255.192 | A13 |
-| Tachibana | Wired | 10.94.21.134 | 255.255.255.252 | A4 |
-| Tachibana | Deus | 10.94.21.129 | 255.255.255.252 | A16 |
-| Tachibana | LAN Collective, Ghost | 10.94.22.1 | 255.255.254.0 | A15 |
-| Deus | Tachibana | 10.94.21.130 | 255.255.255.252 | A16 |
-| Deus | Protocol7 | 10.94.20.193 | 255.255.255.252 | A18 |
-| Deus | LAN Lilith, Specter | 10.94.21.1 | 255.255.255.128 | A17 |
-| Protocol7 | Deus | 10.94.20.194 | 255.255.255.252 | A18 |
-| Protocol7 | Knights | 10.94.20.113 | 255.255.255.252 | A20 |
-| Protocol7 | LAN Chisa, Hodgeson | 10.94.20.129 | 255.255.255.192 | A19 |
-| Knights | Protocol7 | 10.94.20.114 | 255.255.255.252 | A20 |
-| Knights | Phantoma | 10.94.20.101 | 255.255.255.252 | A22 |
-| Knights | Eiri | 10.94.20.105 | 255.255.255.248 | A21 |
-| Phantoma | Knights | 10.94.20.102 | 255.255.255.252 | A22 |
-| Phantoma | Shibuya | 10.94.20.97 | 255.255.255.252 | A24 |
-| Phantoma | LAN Semi | 10.94.20.65 | 255.255.255.224 | A23 |
-| Shibuya | Phantoma | 10.94.20.98 | 255.255.255.252 | A24 |
-| Shibuya | LAN Lain, Mika | 10.94.20.1 | 255.255.255.192 | A25 |
+| Router    | Terhubung ke            | IP Address        | Netmask         | Subnet |
+| --------- | ----------------------- | ----------------- | --------------- | ------ |
+| Cyberia   | LAN JJ, MyuMyu          | 10.94.24.1        | 255.255.255.128 | A1     |
+| Cyberia   | Wired                   | 10.94.24.129      | 255.255.255.252 | A2     |
+| Cyberia   | Cloud                   | sesuai Cloud/DHCP | -               | -      |
+| Wired     | Cyberia                 | 10.94.24.130      | 255.255.255.252 | A2     |
+| Wired     | Navi                    | 10.94.18.65       | 255.255.255.252 | A3     |
+| Wired     | Tachibana               | 10.94.21.133      | 255.255.255.252 | A4     |
+| Wired     | Switch2                 | 10.94.25.1        | 255.255.255.248 | A5     |
+| Psyche    | Switch2                 | 10.94.25.2        | 255.255.255.248 | A5     |
+| Psyche    | LAN Karl, Lin           | 10.94.8.1         | 255.255.252.0   | A6     |
+| Copland   | Switch2                 | 10.94.25.3        | 255.255.255.248 | A5     |
+| Copland   | LAN Masayuki            | 10.94.12.1        | 255.255.254.0   | A8     |
+| Copland   | Juri                    | 10.94.14.1        | 255.255.255.192 | A7     |
+| Schumann  | Switch2                 | 10.94.25.4        | 255.255.255.248 | A5     |
+| Schumann  | Accela                  | 10.94.4.1         | 255.255.255.252 | A10    |
+| Schumann  | Akashic                 | 10.94.4.9         | 255.255.255.248 | A9     |
+| Accela    | Schumann                | 10.94.4.2         | 255.255.255.252 | A10    |
+| Accela    | LAN Omnipresence, Denpa | 10.94.0.1         | 255.255.252.0   | A11    |
+| Navi      | Wired                   | 10.94.18.66       | 255.255.255.252 | A3     |
+| Navi      | LAN Alice, Reika        | 10.94.16.1        | 255.255.255.0   | A12    |
+| Navi      | LAN Yasuo, Miho, Kuma   | 10.94.17.1        | 255.255.255.0   | A14    |
+| Navi      | LAN Taro                | 10.94.18.1        | 255.255.255.192 | A13    |
+| Tachibana | Wired                   | 10.94.21.134      | 255.255.255.252 | A4     |
+| Tachibana | Deus                    | 10.94.21.129      | 255.255.255.252 | A16    |
+| Tachibana | LAN Collective, Ghost   | 10.94.22.1        | 255.255.254.0   | A15    |
+| Deus      | Tachibana               | 10.94.21.130      | 255.255.255.252 | A16    |
+| Deus      | Protocol7               | 10.94.20.193      | 255.255.255.252 | A18    |
+| Deus      | LAN Lilith, Specter     | 10.94.21.1        | 255.255.255.128 | A17    |
+| Protocol7 | Deus                    | 10.94.20.194      | 255.255.255.252 | A18    |
+| Protocol7 | Knights                 | 10.94.20.113      | 255.255.255.252 | A20    |
+| Protocol7 | LAN Chisa, Hodgeson     | 10.94.20.129      | 255.255.255.192 | A19    |
+| Knights   | Protocol7               | 10.94.20.114      | 255.255.255.252 | A20    |
+| Knights   | Phantoma                | 10.94.20.101      | 255.255.255.252 | A22    |
+| Knights   | Eiri                    | 10.94.20.105      | 255.255.255.248 | A21    |
+| Phantoma  | Knights                 | 10.94.20.102      | 255.255.255.252 | A22    |
+| Phantoma  | Shibuya                 | 10.94.20.97       | 255.255.255.252 | A24    |
+| Phantoma  | LAN Semi                | 10.94.20.65       | 255.255.255.224 | A23    |
+| Shibuya   | Phantoma                | 10.94.20.98       | 255.255.255.252 | A24    |
+| Shibuya   | LAN Lain, Mika          | 10.94.20.1        | 255.255.255.192 | A25    |
 
 ## 6. Static Routing
 
 Format di CPT: `ip route <Tujuan> <Netmask> <Next Hop>`
 
-| Router | Tujuan | Netmask | Next Hop | Keterangan |
-|---|---|---|---|---|
-| Cyberia | 0.0.0.0 | 0.0.0.0 | (Cloud) | Default ke Cloud/NAT |
-| Cyberia | 10.94.0.0 | 255.255.224.0 | 10.94.24.130 | Ringkasan seluruh Wired (/19) |
-| Wired | 0.0.0.0 | 0.0.0.0 | 10.94.24.129 | Default ke Cyberia |
-| Wired | 10.94.8.0 | 255.255.252.0 | 10.94.25.2 | Psyche |
-| Wired | 10.94.12.0 | 255.255.252.0 | 10.94.25.3 | Copland |
-| Wired | 10.94.0.0 | 255.255.248.0 | 10.94.25.4 | Schumann |
-| Wired | 10.94.16.0 | 255.255.252.0 | 10.94.18.66 | Navi |
-| Wired | 10.94.20.0 | 255.255.252.0 | 10.94.21.134 | Tachibana |
-| Psyche | 0.0.0.0 | 0.0.0.0 | 10.94.25.1 | Default ke Wired |
-| Copland | 0.0.0.0 | 0.0.0.0 | 10.94.25.1 | Default ke Wired |
-| Schumann | 0.0.0.0 | 0.0.0.0 | 10.94.25.1 | Default ke Wired |
-| Schumann | 10.94.0.0 | 255.255.252.0 | 10.94.4.2 | LAN Accela |
-| Accela | 0.0.0.0 | 0.0.0.0 | 10.94.4.1 | Default ke Schumann |
-| Navi | 0.0.0.0 | 0.0.0.0 | 10.94.18.65 | Default ke Wired |
-| Tachibana | 0.0.0.0 | 0.0.0.0 | 10.94.21.133 | Default ke Wired |
-| Tachibana | 10.94.20.0 | 255.255.254.0 | 10.94.21.130 | Cabang Deus ke bawah |
-| Deus | 0.0.0.0 | 0.0.0.0 | 10.94.21.129 | Default ke Tachibana |
-| Deus | 10.94.20.0 | 255.255.255.0 | 10.94.20.194 | Cabang Protocol7 ke bawah |
-| Protocol7 | 0.0.0.0 | 0.0.0.0 | 10.94.20.193 | Default ke Deus |
-| Protocol7 | 10.94.20.0 | 255.255.255.128 | 10.94.20.114 | Cabang Knights ke bawah |
-| Knights | 0.0.0.0 | 0.0.0.0 | 10.94.20.113 | Default ke Protocol7 |
-| Knights | 10.94.20.0 | 255.255.255.128 | 10.94.20.102 | Cabang Phantoma ke bawah |
-| Phantoma | 0.0.0.0 | 0.0.0.0 | 10.94.20.101 | Default ke Knights |
-| Phantoma | 10.94.20.0 | 255.255.255.192 | 10.94.20.98 | LAN Shibuya |
-| Shibuya | 0.0.0.0 | 0.0.0.0 | 10.94.20.97 | Default ke Phantoma |
+| Router    | Tujuan     | Netmask         | Next Hop     | Keterangan                    |
+| --------- | ---------- | --------------- | ------------ | ----------------------------- |
+| Cyberia   | 0.0.0.0    | 0.0.0.0         | (Cloud)      | Default ke Cloud/NAT          |
+| Cyberia   | 10.94.0.0  | 255.255.224.0   | 10.94.24.130 | Ringkasan seluruh Wired (/19) |
+| Wired     | 0.0.0.0    | 0.0.0.0         | 10.94.24.129 | Default ke Cyberia            |
+| Wired     | 10.94.8.0  | 255.255.252.0   | 10.94.25.2   | Psyche                        |
+| Wired     | 10.94.12.0 | 255.255.252.0   | 10.94.25.3   | Copland                       |
+| Wired     | 10.94.0.0  | 255.255.248.0   | 10.94.25.4   | Schumann                      |
+| Wired     | 10.94.16.0 | 255.255.252.0   | 10.94.18.66  | Navi                          |
+| Wired     | 10.94.20.0 | 255.255.252.0   | 10.94.21.134 | Tachibana                     |
+| Psyche    | 0.0.0.0    | 0.0.0.0         | 10.94.25.1   | Default ke Wired              |
+| Copland   | 0.0.0.0    | 0.0.0.0         | 10.94.25.1   | Default ke Wired              |
+| Schumann  | 0.0.0.0    | 0.0.0.0         | 10.94.25.1   | Default ke Wired              |
+| Schumann  | 10.94.0.0  | 255.255.252.0   | 10.94.4.2    | LAN Accela                    |
+| Accela    | 0.0.0.0    | 0.0.0.0         | 10.94.4.1    | Default ke Schumann           |
+| Navi      | 0.0.0.0    | 0.0.0.0         | 10.94.18.65  | Default ke Wired              |
+| Tachibana | 0.0.0.0    | 0.0.0.0         | 10.94.21.133 | Default ke Wired              |
+| Tachibana | 10.94.20.0 | 255.255.254.0   | 10.94.21.130 | Cabang Deus ke bawah          |
+| Deus      | 0.0.0.0    | 0.0.0.0         | 10.94.21.129 | Default ke Tachibana          |
+| Deus      | 10.94.20.0 | 255.255.255.0   | 10.94.20.194 | Cabang Protocol7 ke bawah     |
+| Protocol7 | 0.0.0.0    | 0.0.0.0         | 10.94.20.193 | Default ke Deus               |
+| Protocol7 | 10.94.20.0 | 255.255.255.128 | 10.94.20.114 | Cabang Knights ke bawah       |
+| Knights   | 0.0.0.0    | 0.0.0.0         | 10.94.20.113 | Default ke Protocol7          |
+| Knights   | 10.94.20.0 | 255.255.255.128 | 10.94.20.102 | Cabang Phantoma ke bawah      |
+| Phantoma  | 0.0.0.0    | 0.0.0.0         | 10.94.20.101 | Default ke Knights            |
+| Phantoma  | 10.94.20.0 | 255.255.255.192 | 10.94.20.98  | LAN Shibuya                   |
+| Shibuya   | 0.0.0.0    | 0.0.0.0         | 10.94.20.97  | Default ke Phantoma           |
 
 Contoh (router Wired):
 
@@ -561,4 +607,4 @@ Wired(config)# ip route 10.94.20.0 255.255.252.0 10.94.21.134
 3. Masukkan perintah `ip route` pada tiap router sesuai tabel **Static Routing**.
 4. Uji konektivitas dengan `ping` antar host dari cabang yang berbeda.
 
-> Jika prefix berubah, ganti sel `B1` pada sheet *Pembagian IP - CIDR* di file Excel; seluruh NID, range host, dan broadcast terhitung ulang.
+> Jika prefix berubah, ganti sel `B1` pada sheet _Pembagian IP - CIDR_ di file Excel; seluruh NID, range host, dan broadcast terhitung ulang.
