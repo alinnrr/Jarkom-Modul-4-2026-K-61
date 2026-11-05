@@ -4,10 +4,13 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 10.94.16.2
-    netmask 255.255.255.240
-    gateway 10.94.10.1
+    address 10.94.8.3
+    netmask 255.255.254.0
+    gateway 10.94.8.1
+
 EOF
-ip addr add 10.94.16.2/28 dev eth0 2>/dev/null || true
+
+ip addr flush dev eth0
+ip addr add 10.94.8.3/23 dev eth0
 ip link set eth0 up
-ip route add default via 10.94.10.1 2>/dev/null || true
+ip route replace default via 10.94.8.1

@@ -4,22 +4,24 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet static
-    address 10.94.16.114
+    address 10.94.16.94
     netmask 255.255.255.252
-    up ip route add default via 10.94.16.113
+    up ip route replace default via 10.94.16.93
 
 auto eth1
 iface eth1 inet static
-    address 10.94.16.117
-    netmask 255.255.255.252
+    address 10.94.15.129
+    netmask 255.255.255.192
 
-up ip route add 10.94.14.192/26 via 10.94.16.118
-up ip route add 10.94.16.24/29 via 10.94.16.118
 EOF
 
 sysctl -w net.ipv4.ip_forward=1
-echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf
-ip addr add 10.94.16.114/30 dev eth0 2>/dev/null || true
+grep -q '^net.ipv4.ip_forward=1' /etc/sysctl.conf || echo 'net.ipv4.ip_forward=1' >> /etc/sysctl.conf
+
+ip addr flush dev eth0
+ip addr add 10.94.16.94/30 dev eth0
 ip link set eth0 up
-ip addr add 10.94.16.117/30 dev eth1 2>/dev/null || true
+ip addr flush dev eth1
+ip addr add 10.94.15.129/26 dev eth1
 ip link set eth1 up
+ip route replace default via 10.94.16.93
