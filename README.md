@@ -385,7 +385,7 @@ Link Cyberia–Cloud tidak dihitung sebagai subnet (NAT/Cloud).
 
 Jumlah IP = jumlah host + interface router. Ukuran blok = pangkat 2 terkecil ≥ jumlah IP + 2 (NID & broadcast).
 
-![Penanda rute A1-A25](assets/penanda-rute-A1-A25.png)
+![Penanda rute A1-A25](assets/penanda_rute_A1-A25.png)
 
 | Nama Subnet | Rute | Jumlah Host | Interface Router | Jumlah IP | Ukuran Blok (+NID/BC) | Netmask |
 |---|---|---|---|---|---|---|
@@ -420,7 +420,7 @@ Jumlah IP = jumlah host + interface router. Ukuran blok = pangkat 2 terkecil ≥
 
 Ukuran blok gabungan = pangkat 2 terkecil ≥ jumlah ukuran blok anak. Cabang diurutkan dari yang terbesar agar alignment benar. B1–B4 bersarang (B1 ⊂ B2 ⊂ B3 ⊂ B4), sehingga pada gambar link yang dipakai bersama tampil berlapis.
 
-![Penanda penggabungan B1-B8](assets/penanda-gabungan-B1-B8.png)
+![Penanda penggabungan B1-B8](assets/penanda_gabungan_B1-B8.png)
 
 | Gabungan | Isi | Total Ukuran | Ukuran Blok | Netmask | Offset (dari X.Y.0.0) | NID |
 |---|---|---|---|---|---|---|
